@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darklita By Remain — Diseñado para no encajar</title>
+<meta name="description" content="Darklita By Remain. Moda Lolita gótica 100% colombiana. Diseñado para no encajar.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<!-- Bootstrap 5 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- AOS (Animate on scroll) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<style >
+  :root{
+    --negro:        #0a0a0d;
+    --negro-suave:  #131217;
+    --hueso:        #f5f0ee;
+    --lila:         #cfa8c4;
+    --lila-suave:   #e9d9e4;
+    --vino:         #5c1622;
+    --vino-claro:   #7a2433;
+    --dorado:       #c9a876;
+    --linea:        rgba(201,168,118,.28);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--negro);
+    color:var(--hueso);
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    overflow-x:hidden;
+  }
+
+  /* ---------- Tipografía base ---------- */
+  .gotica{
+    font-family:'UnifrakturMaguntia', cursive;
+    letter-spacing:.02em;
+    line-height:1.15;
+    font-weight:400;
+  }
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.32em;
+    font-size:.72rem;
+    font-weight:500;
+    color:var(--lila);
+  }
+  .serif-body{font-family:'Cormorant Garamond', serif;}
+  a{color:inherit;}
+
+  /* ---------- Utilidades de sección ---------- */
+  .seccion{
+    position:relative;
+    padding:7rem 0;
+    overflow:hidden;
+  }
+  .seccion-negra{background:var(--negro);}
+  .seccion-suave{background:var(--negro-suave);}
+  .divisor{
+    width:64px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--dorado),transparent);
+    margin:1.6rem auto;
+  }
+  .divisor-izq{margin-left:0;}
+
+  /* ---------- Watermark crest (elemento firma) ---------- */
+  .crest-watermark{
+    position:absolute;
+    width:780px;
+    max-width:140vw;
+    opacity:.045;
+    pointer-events:none;
+    z-index:0;
+    filter:brightness(0) invert(1);
+  }
+  .crest-watermark.top-right{top:-120px;right:-220px;transform:rotate(8deg);}
+  .crest-watermark.bottom-left{bottom:-160px;left:-240px;transform:rotate(-10deg);}
+  .crest-watermark.center-fade{top:50%;left:50%;transform:translate(-50%,-50%);}
+
+  /* ---------- NAV ---------- */
+  .navbar-darklita{
+    background:rgba(10,10,13,.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--linea);
+    transition:background .3s ease;
+  }
+  @media (max-width: 991px){
+    .navbar-collapse.show, .navbar-collapse.collapsing{
+      background:rgba(10,10,13,.97);
+      margin:0 -1rem; padding:.5rem 1rem 1rem;
+      border-bottom:1px solid var(--linea);
+    }
+  }
+  .navbar-darklita .nav-link{
+    font-family:'Jost', sans-serif;
+    font-size:.78rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--hueso);
+    opacity:.78;
+    margin:0 .9rem;
+    transition:opacity .25s, color .25s;
+  }
+  .navbar-darklita .nav-link:hover{opacity:1;color:var(--lila);}
+  .navbar-brand-text{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:1.55rem;
+    color:var(--hueso);
+  }
+  .btn-ig-nav{
+    font-family:'Jost', sans-serif;
+    font-size:.72rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    border:1px solid var(--lila);
+    color:var(--hueso);
+    padding:.5rem 1.3rem;
+    border-radius:0;
+    transition:all .3s ease;
+    background:transparent;
+  }
+  .btn-ig-nav:hover{background:var(--lila);color:var(--negro);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(10,10,13,.35) 0%, rgba(10,10,13,.55) 55%, var(--negro) 100%),
+      url('assets/final/hero-chair.jpg');
+    background-size:cover;
+    background-position:center 18%;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at 30% 40%, rgba(10,10,13,0) 0%, rgba(10,10,13,.85) 78%);
+  }
+  .hero-content{position:relative; z-index:2;}
+  .hero-eyebrow{
+    font-family:'Jost', sans-serif;
+    letter-spacing:.38em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    color:var(--lila-suave);
+    margin-bottom:1.2rem;
+  }
+  .hero-title{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:clamp(3.4rem, 9vw, 7.5rem);
+    line-height:1;
+    color:var(--hueso);
+    text-shadow:0 4px 40px rgba(0,0,0,.6);
+  }
+  .hero-tagline{
+    font-style:italic;
+    font-size:clamp(1.1rem, 1.6vw, 1.5rem);
+    color:var(--hueso);
+    max-width:520px;
+    opacity:.92;
+    margin-top:1.1rem;
+  }
+  .hero-sub{
+    font-family:'Jost', sans-serif;
+    font-size:.85rem;
+    letter-spacing:.06em;
+    color:var(--lila-suave);
+    text-transform:uppercase;
+    margin-top:.4rem;
+  }
+  .hero-ctas{margin-top:2.6rem;}
+
+  .btn-primario{
+    font-family:'Jost', sans-serif;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-size:.82rem;
+    background:var(--lila);
+    color:var(--negro);
+    border:1px solid var(--lila);
+    padding:.85rem 2.1rem;
+    border-radius:0;
+    transition:all .35s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .btn-primario:hover{background:transparent;color:var(--lila);}
+
+  .btn-secundario{
+    font-family:'Jost', sans-serif;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-size:.82rem;
+    background:transparent;
+    color:var(--hueso);
+    border:1px solid rgba(245,240,238,.45);
+    padding:.85rem 2.1rem;
+    border-radius:0;
+    transition:all .35s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .btn-secundario:hover{border-color:var(--hueso); background:rgba(245,240,238,.06);}
+
+  .scroll-cue{
+    position:absolute;
+    bottom:2.4rem; left:50%;
+    transform:translateX(-50%);
+    font-family:'Jost',sans-serif;
+    font-size:.68rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--lila-suave);
+    opacity:.7;
+    z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:.5rem;
+  }
+  .scroll-cue .linea-scroll{
+    width:1px; height:38px;
+    background:linear-gradient(180deg, var(--lila-suave), transparent);
+    animation:scrollpulse 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollpulse{0%,100%{opacity:.25;}50%{opacity:1;}}
+
+  /* ---------- Sello del crest (signature element) ---------- */
+  .sello-wrap{
+    display:flex;
+    justify-content:center;
+    margin:-1px auto 0;
+    position:relative;
+    z-index:3;
+  }
+  .sello{
+    width:148px;
+    filter:drop-shadow(0 8px 22px rgba(0,0,0,.55));
+    opacity:0;
+    transform:scale(1.5);
+  }
+  .sello.estampado{
+    animation:estampar 1.1s cubic-bezier(.2,.9,.25,1) forwards;
+  }
+  @keyframes estampar{
+    0%{opacity:0; transform:scale(2.1);}
+    55%{opacity:1; transform:scale(.92);}
+    75%{transform:scale(1.04);}
+    100%{opacity:1; transform:scale(1);}
+  }
+
+  /* ---------- Esencia ---------- */
+  .esencia-img{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--linea);
+  }
+  .esencia-img img{
+    width:100%; display:block;
+    filter:saturate(.92) contrast(1.05);
+    transition:transform 1.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .esencia-img:hover img{transform:scale(1.045);}
+  .titulo-seccion{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    color:var(--hueso);
+    line-height:1.05;
+  }
+  .cuerpo-grande{
+    font-size:1.28rem;
+    line-height:1.75;
+    color:var(--hueso);
+    opacity:.92;
+  }
+  .firma-frase{
+    font-style:italic;
+    color:var(--lila);
+    font-size:1.5rem;
+    margin-top:1.4rem;
+  }
+
+  /* ---------- Valores ---------- */
+  .valor-item{
+    border-top:1px solid var(--linea);
+    padding:1.8rem 0;
+    transition:padding-left .3s ease;
+  }
+  .valor-item:hover{padding-left:.6rem;}
+  .valor-marca{
+    font-family:'UnifrakturMaguntia', cursive;
+    color:var(--lila);
+    font-size:1.3rem;
+    margin-right:.6rem;
+  }
+  .valor-nombre{
+    font-family:'Jost', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    font-size:1.02rem;
+    color:var(--hueso);
+  }
+  .valor-desc{
+    font-size:1.08rem;
+    color:var(--hueso);
+    opacity:.78;
+    margin-top:.3rem;
+  }
+
+  /* ---------- Identidad / Voz ---------- */
+  .panel-identidad{
+    background:var(--negro-suave);
+    border:1px solid var(--linea);
+    padding:2.6rem 2.2rem;
+    height:100%;
+  }
+  .panel-identidad .eyebrow{margin-bottom:.9rem;}
+  .lista-voz{list-style:none; padding:0; margin:0;}
+  .lista-voz li{
+    padding:.55rem 0;
+    border-bottom:1px solid rgba(245,240,238,.08);
+    font-size:1.08rem;
+  }
+  .lista-voz li:last-child{border-bottom:none;}
+  .lista-voz li::before{content:"✦ "; color:var(--dorado); margin-right:.3rem;}
+
+  /* ---------- Moodboard / galería ---------- */
+  .galeria-item{
+    overflow:hidden;
+    position:relative;
+    border:1px solid var(--linea);
+  }
+  .galeria-item img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 1.2s cubic-bezier(.2,.8,.2,1), filter .6s;
+    filter:saturate(.85);
+  }
+  .galeria-item:hover img{transform:scale(1.06); filter:saturate(1.05);}
+  .galeria-cap{
+    position:absolute; bottom:0; left:0; right:0;
+    padding:1rem 1.1rem;
+    background:linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+    font-family:'Jost',sans-serif;
+    font-size:.72rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--lila-suave);
+    opacity:0;
+    transition:opacity .35s ease;
+  }
+  .galeria-item:hover .galeria-cap{opacity:1;}
+
+  /* ---------- Categorías lolita ---------- */
+  .cat-pill{
+    font-family:'Jost', sans-serif;
+    font-size:.78rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    border:1px solid var(--linea);
+    padding:.55rem 1.2rem;
+    display:inline-block;
+    margin:.3rem;
+    transition:all .3s ease;
+    color:var(--hueso);
+  }
+  .cat-pill:hover{border-color:var(--lila); color:var(--lila); background:rgba(207,168,196,.06);}
+
+  /* ---------- Público objetivo (stats) ---------- */
+  .stat-num{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:2.6rem;
+    color:var(--lila);
+    line-height:1;
+  }
+  .stat-label{
+    font-family:'Jost', sans-serif;
+    font-size:.74rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--hueso);
+    opacity:.7;
+    margin-top:.4rem;
+  }
+
+  /* ---------- Manifiesto ---------- */
+  .manifiesto{
+    text-align:center;
+    padding:9rem 1rem;
+    position:relative;
+  }
+  .manifiesto p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:clamp(1.5rem, 3.4vw, 2.4rem);
+    line-height:1.5;
+    color:var(--hueso);
+    max-width:780px;
+    margin:0 auto;
+  }
+  .manifiesto .firma-final{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:2.2rem;
+    color:var(--lila);
+    margin-top:2rem;
+  }
+
+  /* ---------- CTA final ---------- */
+  .cta-final{
+    background:radial-gradient(ellipse at 50% 0%, var(--vino-claro) -40%, var(--negro) 65%);
+    text-align:center;
+    padding:8rem 1rem;
+    border-top:1px solid var(--linea);
+  }
+  .cta-final h2{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    color:var(--hueso);
+  }
+  .btn-ig-grande{
+    font-family:'Jost', sans-serif;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-size:.95rem;
+    background:var(--lila);
+    color:var(--negro);
+    border:1px solid var(--lila);
+    padding:1.1rem 2.8rem;
+    border-radius:0;
+    transition:all .35s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:.7rem;
+    margin-top:2.4rem;
+  }
+  .btn-ig-grande:hover{background:transparent; color:var(--lila); letter-spacing:.26em;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--negro);
+    border-top:1px solid var(--linea);
+    padding:3rem 0 2rem;
+    text-align:center;
+  }
+  footer .footer-logo{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:1.6rem;
+    color:var(--hueso);
+  }
+  footer .footer-sub{
+    font-family:'Jost', sans-serif;
+    font-size:.7rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--lila);
+    opacity:.7;
+    margin-top:.4rem;
+  }
+  .footer-social{
+    margin-top:1.6rem;
+    display:flex;
+    gap:1.2rem;
+    justify-content:center;
+  }
+  .footer-social a{
+    width:38px; height:38px;
+    border:1px solid var(--linea);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transition:all .3s ease;
+  }
+  .footer-social a:hover{border-color:var(--lila); color:var(--lila); transform:translateY(-3px);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 767px){
+    .seccion{padding:4.5rem 0;}
+    .crest-watermark{width:480px;}
+    .panel-identidad{padding:2rem 1.4rem;}
+  }
+
+  /* ---------- Accesibilidad: foco visible ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--lila);
+    outline-offset:3px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="navbar navbar-expand-lg navbar-darklita fixed-top py-3">
+  <div class="container">
+    <a class="navbar-brand navbar-brand-text" href="#inicio">Darklita</a>
+    <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="filter:invert(1);">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2 mb-3 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#esencia">Esencia</a></li>
+        <li class="nav-item"><a class="nav-link" href="#identidad">Identidad</a></li>
+        <li class="nav-item"><a class="nav-link" href="#moodboard">Moodboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#publico">Para quién</a></li>
+        <li class="nav-item mt-2 mt-lg-0 ms-lg-2">
+          <a class="btn-ig-nav" href="https://www.instagram.com/darklita.official" target="_blank" rel="noopener">Instagram</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="inicio">
+  <div class="container hero-content text-center text-lg-start">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-9">
+        <div class="hero-eyebrow">By Remain</div>
+        <h1 class="hero-title">Darklita</h1>
+        <p class="hero-tagline mx-auto">"Para quienes no encajan en lo común."</p>
+        <div class="hero-sub">Moda Lolita gótica · 100% colombiana</div>
+        <div class="hero-ctas d-flex flex-wrap justify-content-center gap-3">
+          <a href="https://www.instagram.com/darklita.official" target="_blank" rel="noopener" class="btn-primario">
+            Síguenos en Instagram
+          </a>
+          <a href="#esencia" class="btn-secundario">Conoce la marca</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <span>Desliza</span>
+    <span class="linea-scroll"></span>
+  </div>
+</header>
+
+<!-- <div class="sello-wrap">
+  <img src="assets/final/crest-only.png" alt="" class="sello" id="selloCrest">
+</div> -->
+
+<!-- ============ ESENCIA DE MARCA ============ -->
+<section class="seccion seccion-negra" id="esencia">
+  <img src="assets/final/crest-only.png" class="crest-watermark top-right" alt="">
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5" data-aos="fade-right" data-aos-duration="900">
+        <div class="esencia-img">
+          <img src="assets/final/hero-chair.jpg" alt="Mujer con vestido Darklita gótico, rodeada de muñecas antiguas">
+        </div>
+      </div>
+      <div class="col-lg-7" data-aos="fade-left" data-aos-duration="900" data-aos-delay="120">
+        <div class="eyebrow mb-2">01 — Esencia de marca</div>
+        <h2 class="titulo-seccion mb-4">No nacimos<br>para encajar</h2>
+        <p class="cuerpo-grande">
+          <strong style="color:var(--lila); font-weight:600;">Darklita</strong> (dark + lolita) define a una mujer empoderada y segura que abraza su estética y se distingue sin buscar encajar.
+        </p>
+        <p class="cuerpo-grande">
+          Nace de la inconformidad con la moda convencional y la sensación de no encajar en lo establecido. Al descubrir el Lolita Style, difícil de encontrar en Colombia, surgió la necesidad de traer esa identidad a la vida.
+        </p>
+        <p class="firma-frase">No es solo una prenda de ropa.<br>Es como te identificas.<br>Es Darklita.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISIÓN / VISIÓN ============ -->
+<section class="seccion seccion-suave">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-md-6" data-aos="fade-up" data-aos-duration="800">
+        <div class="eyebrow mb-2">Misión</div>
+        <h3 class="titulo-seccion mb-3" style="font-size:2.2rem;">Identidad sin filtros</h3>
+        <p class="cuerpo-grande">Crear prendas que permitan a cada mujer expresar su identidad auténtica, fusionando lo oscuro y lo delicado en diseños que rompen con lo convencional y resaltan la seguridad personal.</p>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+        <div class="eyebrow mb-2">Visión</div>
+        <h3 class="titulo-seccion mb-3" style="font-size:2.2rem;">Referente regional</h3>
+        <p class="cuerpo-grande">Posicionar a Darklita como una marca referente del lolita fashion de inspiración japonesa en Colombia y Latinoamérica, reconocida por empoderar a mujeres que eligen no encajar.</p>
+      </div>
+    </div>
+
+    <div class="divisor" style="margin-top:4rem; margin-bottom:3rem;"></div>
+
+    <div class="row g-4">
+      <div class="col-12 text-center mb-2" data-aos="fade-up">
+        <div class="eyebrow">Valores</div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="50">
+        <div class="valor-item"><span class="valor-marca">✦</span><span class="valor-nombre">Autenticidad</span><div class="valor-desc">Promovemos la expresión individual sin filtros ni estándares impuestos.</div></div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="valor-item"><span class="valor-marca">✦</span><span class="valor-nombre">Empoderamiento</span><div class="valor-desc">Diseñamos para mujeres seguras de sí mismas, que se apropian de su imagen.</div></div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="50">
+        <div class="valor-item"><span class="valor-marca">✦</span><span class="valor-nombre">Originalidad</span><div class="valor-desc">Cada diseño nace de una identidad estética única, lejos de lo convencional.</div></div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="valor-item"><span class="valor-marca">✦</span><span class="valor-nombre">Calidad</span><div class="valor-desc">Cuidamos cada detalle para ofrecer prendas duraderas y bien construidas.</div></div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="50">
+        <div class="valor-item"><span class="valor-marca">✦</span><span class="valor-nombre">Elegancia oscura</span><div class="valor-desc">Fusionamos lo delicado con lo enigmático para una estética sofisticada.</div></div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="valor-item"><span class="valor-marca">✦</span><span class="valor-nombre">Exclusividad</span><div class="valor-desc">Creamos piezas con identidad única para quienes buscan diferenciarse.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IDENTIDAD DE MARCA ============ -->
+<section class="seccion seccion-negra" id="identidad">
+  <img src="assets/final/crest-only.png" class="crest-watermark bottom-left" alt="">
+  <div class="container position-relative">
+    <div class="row mb-5">
+      <div class="col-lg-7" data-aos="fade-up">
+        <div class="eyebrow mb-2">02 — Identidad de marca</div>
+        <h2 class="titulo-seccion">Quién es Darklita</h2>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="50">
+        <div class="panel-identidad">
+          <div class="eyebrow">Carácter</div>
+          <p class="cuerpo-grande" style="font-size:1.12rem;">
+            Una mujer segura de sí misma, elegante y enigmática. Camina sin prisa, pero con presencia. No necesita llamar la atención: la atención llega sola. Es reservada, pero expresiva a través de su estilo.
+          </p>
+          <p class="cuerpo-grande" style="font-size:1.12rem;">
+            Prefiere lugares tranquilos: cafeterías con luz tenue, rincones antiguos. Disfruta café oscuro, té o vino, y una inclinación por lo simple pero estético.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+        <div class="panel-identidad">
+          <div class="eyebrow">Voz de marca</div>
+          <ul class="lista-voz">
+            <li>Usa pocas palabras, pero con impacto</li>
+            <li>No ruega atención, la atrae</li>
+            <li>No es ruidosa, es magnética</li>
+            <li>Mantiene un aire misterioso y sofisticado</li>
+            <li>Habla con firmeza, sin dudas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4 g-4">
+      <div class="col-12" data-aos="fade-up">
+        <div class="text-center">
+          <span class="cat-pill">Arquetipo: La Rebelde</span>
+          <span class="cat-pill">Arquetipo: La Creadora</span>
+          <span class="cat-pill">Tono sutilmente rebelde</span>
+          <span class="cat-pill">Tono sofisticado</span>
+          <span class="cat-pill">Cercana pero selectiva</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOODBOARD ============ -->
+<section class="seccion seccion-suave" id="moodboard">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-7" data-aos="fade-up">
+        <div class="eyebrow mb-2">03 — Moodboard</div>
+        <h2 class="titulo-seccion">La estética Darklita</h2>
+        <p class="cuerpo-grande mt-3">Fusión entre lo dark, lo cute y lo elegante. Encajes, lazos, siluetas victorianas y un aire melancólico-romántico.</p>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="galeria-item" style="aspect-ratio:3/4;">
+          <img src="assets/final/moodboard-3.jpg" alt="Lolita estilo clásico romántico, encajes blancos">
+          <div class="galeria-cap">Classic Lolita</div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
+        <div class="galeria-item" style="aspect-ratio:3/4;">
+          <img src="assets/final/moodboard-2.jpg" alt="Gothic Punk Lolita, contraste blanco y negro">
+          <div class="galeria-cap">Gothic / Punk Lolita</div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
+        <div class="galeria-item" style="aspect-ratio:3/4;">
+          <img src="assets/final/moodboard-1.jpg" alt="Sweet Lolita, tonos claros y delicados">
+          <div class="galeria-cap">Sweet Lolita</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-aos="fade-up">
+      <span class="cat-pill">Gothic Lolita</span>
+      <span class="cat-pill">Sweet Lolita</span>
+      <span class="cat-pill">Classic Lolita</span>
+      <span class="cat-pill">Punk Lolita</span>
+      <span class="cat-pill">Ouji / Kodona</span>
+      <span class="cat-pill">Kuro / Shiro</span>
+      <span class="cat-pill">Military Lolita</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROPUESTA DE VALOR ============ -->
+<section class="seccion seccion-negra">
+  <img src="assets/final/crest-only.png" class="crest-watermark center-fade" alt="" style="opacity:.03;">
+  <div class="container position-relative">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-7" data-aos="fade-up">
+        <div class="eyebrow mb-2">04 — Propuesta de valor</div>
+        <h2 class="titulo-seccion">Lo que nos distingue</h2>
+      </div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4 col-lg-3 text-center" data-aos="fade-up" data-aos-delay="0">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Producción colombiana</div>
+      </div>
+      <div class="col-md-4 col-lg-3 text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-num">Único</div>
+        <div class="stat-label">Diseños originales</div>
+      </div>
+      <div class="col-md-4 col-lg-3 text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-num">Real</div>
+        <div class="stat-label">Tallaje para latinas</div>
+      </div>
+      <div class="col-md-4 col-lg-3 text-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-num">Dark</div>
+        <div class="stat-label">+ Cute + Elegante</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PÚBLICO ============ -->
+<section class="seccion seccion-suave" id="publico">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+        <div class="galeria-item" style="aspect-ratio:4/5;">
+          <img src="assets/final/moodboard-1.jpg" alt="Mujer en estética Darklita, ambiente íntimo">
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+        <div class="eyebrow mb-2">05 — Para quién</div>
+        <h2 class="titulo-seccion mb-4">Pensado para ti, si...</h2>
+        <ul class="lista-voz" style="font-size:1.15rem;">
+          <li>Tienes entre 16 y 30 años y buscas expresarte sin límites</li>
+          <li>Te identificas con el j-fashion, lo gótico, el anime o el cosplay</li>
+          <li>Vives en Bogotá o Medellín — y pronto, en toda Colombia</li>
+          <li>Prefieres calidad sobre cantidad: café oscuro, té, postres delicados</li>
+          <li>Buscas piezas con tallaje real, pensadas para cuerpos latinos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFIESTO ============ -->
+<section class="seccion seccion-negra">
+  <div class="manifiesto" data-aos="zoom-in" data-aos-duration="1000">
+    <p>"No nacimos para encajar.<br>Nacimos para destacar en la oscuridad."</p>
+    <div class="firma-final">Darklita</div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final">
+  <div class="container" data-aos="fade-up">
+    <div class="eyebrow mb-3">Síguenos</div>
+    <h2>Diseñado para no encajar</h2>
+    <p class="cuerpo-grande mx-auto" style="max-width:560px;">Descubre cada lanzamiento, detrás de cámaras y la comunidad Darklita en Instagram.</p>
+    <a href="https://www.instagram.com/darklita.official" target="_blank" rel="noopener" class="btn-ig-grande">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @darklita.official
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Darklita</div>
+    <div class="footer-sub">By Remain</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/darklita.official" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+    <p class="mt-4" style="font-family:'Jost',sans-serif; font-size:.7rem; letter-spacing:.08em; color:rgba(245,240,238,.4);">
+      © 2026 Darklita By Remain. Hecho en Colombia.
+    </p>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    once:true,
+    easing:'ease-out-cubic'
+  });
+
+  // Sello: se "estampa" cuando el hero entra en vista (carga inicial)
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.getElementById('selloCrest').classList.add('estampado');
+    }, 350);
+  });
+
+  // Navbar: fondo más sólido al hacer scroll
+  const nav = document.querySelector('.navbar-darklita');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 40){
+      nav.style.background = 'rgba(10,10,13,.95)';
+    } else {
+      nav.style.background = 'rgba(10,10,13,.78)';
+    }
+  });
+</script>
+
+</body>
+</html>
