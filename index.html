@@ -11,10 +11,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" href="style.css"> -->
-<!-- Bootstrap 5 -->
+<!-- FRAMEWORK DE DISEÑO -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- AOS (Animate on scroll) -->
+<!-- ANIMACION -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
 <style >
@@ -41,7 +41,6 @@
     overflow-x:hidden;
   }
 
-  /* ---------- Tipografía base ---------- */
   .gotica{
     font-family:'UnifrakturMaguntia', cursive;
     letter-spacing:.02em;
@@ -59,7 +58,6 @@
   .serif-body{font-family:'Cormorant Garamond', serif;}
   a{color:inherit;}
 
-  /* ---------- Utilidades de sección ---------- */
   .seccion{
     position:relative;
     padding:7rem 0;
@@ -74,7 +72,6 @@
   }
   .divisor-izq{margin-left:0;}
 
-  /* ---------- Watermark crest (elemento firma) ---------- */
   .crest-watermark{
     position:absolute;
     width:780px;
@@ -88,7 +85,6 @@
   .crest-watermark.bottom-left{bottom:-160px;left:-240px;transform:rotate(-10deg);}
   .crest-watermark.center-fade{top:50%;left:50%;transform:translate(-50%,-50%);}
 
-  /* ---------- NAV ---------- */
   .navbar-darklita{
     background:rgba(10,10,13,.78);
     backdrop-filter:blur(10px);
@@ -132,7 +128,6 @@
   }
   .btn-ig-nav:hover{background:var(--lila);color:var(--negro);}
 
-  /* ---------- HERO ---------- */
   .hero{
     min-height:100vh;
     display:flex;
@@ -140,7 +135,7 @@
     position:relative;
     background:
       linear-gradient(180deg, rgba(10,10,13,.35) 0%, rgba(10,10,13,.55) 55%, var(--negro) 100%),
-      url('assets/final/hero-chair.jpg');
+      url('assets/final/hero-fuente.jpg');
     background-size:cover;
     background-position:center 18%;
   }
@@ -237,7 +232,6 @@
   }
   @keyframes scrollpulse{0%,100%{opacity:.25;}50%{opacity:1;}}
 
-  /* ---------- Sello del crest (signature element) ---------- */
   .sello-wrap{
     display:flex;
     justify-content:center;
@@ -261,7 +255,6 @@
     100%{opacity:1; transform:scale(1);}
   }
 
-  /* ---------- Esencia ---------- */
   .esencia-img{
     position:relative;
     overflow:hidden;
@@ -292,7 +285,6 @@
     margin-top:1.4rem;
   }
 
-  /* ---------- Valores ---------- */
   .valor-item{
     border-top:1px solid var(--linea);
     padding:1.8rem 0;
@@ -319,7 +311,6 @@
     margin-top:.3rem;
   }
 
-  /* ---------- Identidad / Voz ---------- */
   .panel-identidad{
     background:var(--negro-suave);
     border:1px solid var(--linea);
@@ -336,7 +327,6 @@
   .lista-voz li:last-child{border-bottom:none;}
   .lista-voz li::before{content:"✦ "; color:var(--dorado); margin-right:.3rem;}
 
-  /* ---------- Moodboard / galería ---------- */
   .galeria-item{
     overflow:hidden;
     position:relative;
@@ -362,7 +352,6 @@
   }
   .galeria-item:hover .galeria-cap{opacity:1;}
 
-  /* ---------- Categorías lolita ---------- */
   .cat-pill{
     font-family:'Jost', sans-serif;
     font-size:.78rem;
@@ -377,7 +366,6 @@
   }
   .cat-pill:hover{border-color:var(--lila); color:var(--lila); background:rgba(207,168,196,.06);}
 
-  /* ---------- Público objetivo (stats) ---------- */
   .stat-num{
     font-family:'UnifrakturMaguntia', cursive;
     font-size:2.6rem;
@@ -394,7 +382,6 @@
     margin-top:.4rem;
   }
 
-  /* ---------- Manifiesto ---------- */
   .manifiesto{
     text-align:center;
     padding:9rem 1rem;
@@ -416,7 +403,6 @@
     margin-top:2rem;
   }
 
-  /* ---------- CTA final ---------- */
   .cta-final{
     background:radial-gradient(ellipse at 50% 0%, var(--vino-claro) -40%, var(--negro) 65%);
     text-align:center;
@@ -446,7 +432,6 @@
   }
   .btn-ig-grande:hover{background:transparent; color:var(--lila); letter-spacing:.26em;}
 
-  /* ---------- Footer ---------- */
   footer{
     background:var(--negro);
     border-top:1px solid var(--linea);
@@ -482,20 +467,17 @@
   }
   .footer-social a:hover{border-color:var(--lila); color:var(--lila); transform:translateY(-3px);}
 
-  /* ---------- Responsive ---------- */
   @media (max-width: 767px){
     .seccion{padding:4.5rem 0;}
     .crest-watermark{width:480px;}
     .panel-identidad{padding:2rem 1.4rem;}
   }
 
-  /* ---------- Accesibilidad: foco visible ---------- */
   a:focus-visible, button:focus-visible{
     outline:2px solid var(--lila);
     outline-offset:3px;
   }
 
-  /* Reduced motion */
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
   }
@@ -559,7 +541,7 @@
     <div class="row align-items-center g-5">
       <div class="col-lg-5" data-aos="fade-right" data-aos-duration="900">
         <div class="esencia-img">
-          <img src="assets/final/hero-chair.jpg" alt="Mujer con vestido Darklita gótico, rodeada de muñecas antiguas">
+          <img src="assets/final/esencia-rosas.jpg" alt="Mujer con estética Darklita, rosas y labial oscuro">
         </div>
       </div>
       <div class="col-lg-7" data-aos="fade-left" data-aos-duration="900" data-aos-delay="120">
@@ -686,19 +668,19 @@
     <div class="row g-3">
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
         <div class="galeria-item" style="aspect-ratio:3/4;">
-          <img src="assets/final/moodboard-3.jpg" alt="Lolita estilo clásico romántico, encajes blancos">
+          <img src="assets/final/moodboard-ventana.jpg" alt="Lolita gótica junto a una ventana con velas">
           <div class="galeria-cap">Classic Lolita</div>
         </div>
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
         <div class="galeria-item" style="aspect-ratio:3/4;">
-          <img src="assets/final/moodboard-2.jpg" alt="Gothic Punk Lolita, contraste blanco y negro">
-          <div class="galeria-cap">Gothic / Punk Lolita</div>
+          <img src="assets/final/moodboard-rosa-negra.jpg" alt="Lolita gótica con rosa negra y choker de corazón">
+          <div class="galeria-cap">Gothic Lolita</div>
         </div>
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
         <div class="galeria-item" style="aspect-ratio:3/4;">
-          <img src="assets/final/moodboard-1.jpg" alt="Sweet Lolita, tonos claros y delicados">
+          <img src="assets/final/moodboard-oso.jpg" alt="Lolita con lazo y oso de peluche, estilo dark-cute">
           <div class="galeria-cap">Sweet Lolita</div>
         </div>
       </div>
@@ -753,7 +735,7 @@
     <div class="row align-items-center g-5">
       <div class="col-lg-6 order-lg-2" data-aos="fade-left">
         <div class="galeria-item" style="aspect-ratio:4/5;">
-          <img src="assets/final/moodboard-1.jpg" alt="Mujer en estética Darklita, ambiente íntimo">
+          <img src="assets/final/publico-fuente.jpg" alt="Mujer en estética Darklita frente a una fuente">
         </div>
       </div>
       <div class="col-lg-6 order-lg-1" data-aos="fade-right">
