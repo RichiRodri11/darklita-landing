@@ -10,14 +10,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<!-- <link rel="stylesheet" href="style.css"> -->
 <!-- FRAMEWORK DE DISEÑO -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- ANIMACION -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
-<style >
+<style>
   :root{
     --negro:        #0a0a0d;
     --negro-suave:  #131217;
@@ -28,6 +26,11 @@
     --vino-claro:   #7a2433;
     --dorado:       #c9a876;
     --linea:        rgba(201,168,118,.28);
+
+    /* ===== Y2K / CYBER — acentos nuevos, sutiles, solo para detalles ===== */
+    --cyber-cian:   #9ff3e6;   /* chrome frío, casi blanco-menta */
+    --cyber-mag:    #e8a3c9;   /* magenta apagado, hermano del --lila */
+    --cyber-line:   rgba(159,243,230,.35);
   }
 
   *{box-sizing:border-box;}
@@ -39,6 +42,10 @@
     font-family:'Cormorant Garamond', serif;
     font-size:1.15rem;
     overflow-x:hidden;
+    cursor:none; /* el cursor custom reemplaza al del sistema en desktop */
+  }
+  @media (max-width: 991px), (pointer:coarse){
+    body{cursor:auto;} /* en touch/mobile, cursor normal del sistema */
   }
 
   .gotica{
@@ -114,6 +121,8 @@
     font-size:1.55rem;
     color:var(--hueso);
   }
+
+  /* ===== BOTÓN NAV — chrome Y2K sutil ===== */
   .btn-ig-nav{
     font-family:'Jost', sans-serif;
     font-size:.72rem;
@@ -125,8 +134,26 @@
     border-radius:0;
     transition:all .3s ease;
     background:transparent;
+    position:relative;
+    overflow:hidden;
+  }
+  .btn-ig-nav::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(120deg, transparent 30%, var(--cyber-cian) 45%, transparent 60%);
+    opacity:0;
+    transform:translateX(-120%);
+    transition:none;
   }
   .btn-ig-nav:hover{background:var(--lila);color:var(--negro);}
+  .btn-ig-nav:hover::before{
+    opacity:.35;
+    animation:chromeSweep .9s ease forwards;
+  }
+  @keyframes chromeSweep{
+    from{transform:translateX(-120%);}
+    to{transform:translateX(120%);}
+  }
 
   .hero{
     min-height:100vh;
@@ -159,6 +186,19 @@
     line-height:1;
     color:var(--hueso);
     text-shadow:0 4px 40px rgba(0,0,0,.6);
+    position:relative;
+    display:inline-block;
+  }
+  /* glitch muy sutil: solo en hover del título, no automático/loop */
+  .hero-title:hover{
+    animation:glitchTitle .42s steps(2,end) 1;
+  }
+  @keyframes glitchTitle{
+    0%{ text-shadow:0 4px 40px rgba(0,0,0,.6); transform:translate(0,0); }
+    20%{ text-shadow:-2px 0 var(--cyber-mag), 2px 0 var(--cyber-cian); transform:translate(-1px,0); }
+    40%{ text-shadow:2px 0 var(--cyber-mag), -2px 0 var(--cyber-cian); transform:translate(1px,0); }
+    60%{ text-shadow:-1px 0 var(--cyber-mag), 1px 0 var(--cyber-cian); transform:translate(0,0); }
+    100%{ text-shadow:0 4px 40px rgba(0,0,0,.6); transform:translate(0,0); }
   }
   .hero-tagline{
     font-style:italic;
@@ -178,6 +218,7 @@
   }
   .hero-ctas{margin-top:2.6rem;}
 
+  /* ===== BOTÓN PRIMARIO — leve chrome sweep en hover ===== */
   .btn-primario{
     font-family:'Jost', sans-serif;
     letter-spacing:.16em;
@@ -192,8 +233,21 @@
     display:inline-flex;
     align-items:center;
     gap:.6rem;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .btn-primario::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.55) 48%, transparent 62%);
+    transform:translateX(-150%);
+    z-index:1;
   }
   .btn-primario:hover{background:transparent;color:var(--lila);}
+  .btn-primario:hover::after{
+    animation:chromeSweep .8s ease forwards;
+  }
 
   .btn-secundario{
     font-family:'Jost', sans-serif;
@@ -209,8 +263,9 @@
     display:inline-flex;
     align-items:center;
     gap:.6rem;
+    position:relative;
   }
-  .btn-secundario:hover{border-color:var(--hueso); background:rgba(245,240,238,.06);}
+  .btn-secundario:hover{border-color:var(--cyber-cian); background:rgba(159,243,230,.06); color:var(--cyber-cian);}
 
   .scroll-cue{
     position:absolute;
@@ -225,9 +280,10 @@
     z-index:2;
     display:flex; flex-direction:column; align-items:center; gap:.5rem;
   }
+  /* ===== SCROLL CUE — línea ahora con pulso bicolor tipo señal digital ===== */
   .scroll-cue .linea-scroll{
     width:1px; height:38px;
-    background:linear-gradient(180deg, var(--lila-suave), transparent);
+    background:linear-gradient(180deg, var(--cyber-cian), var(--lila-suave), transparent);
     animation:scrollpulse 2.2s ease-in-out infinite;
   }
   @keyframes scrollpulse{0%,100%{opacity:.25;}50%{opacity:1;}}
@@ -414,6 +470,8 @@
     font-size:clamp(2.6rem, 6vw, 4.4rem);
     color:var(--hueso);
   }
+
+  /* ===== BOTÓN GRANDE FINAL — el más "cyber" de todos, sigue siendo discreto ===== */
   .btn-ig-grande{
     font-family:'Jost', sans-serif;
     letter-spacing:.2em;
@@ -429,8 +487,21 @@
     align-items:center;
     gap:.7rem;
     margin-top:2.4rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .btn-ig-grande::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(115deg, transparent 35%, var(--cyber-cian) 48%, var(--cyber-mag) 52%, transparent 65%);
+    opacity:0;
+    transform:translateX(-150%);
   }
   .btn-ig-grande:hover{background:transparent; color:var(--lila); letter-spacing:.26em;}
+  .btn-ig-grande:hover::before{
+    opacity:.4;
+    animation:chromeSweep .9s ease forwards;
+  }
 
   footer{
     background:var(--negro);
@@ -480,10 +551,113 @@
 
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
+    body{cursor:auto !important;}
+    .cyber-cursor, .cyber-cursor-ring{display:none !important;}
+  }
+
+  /* ====================================================================
+     NUEVO BLOQUE — Y2K / CYBER OSCURO (sutil)
+     1) Loader de entrada con barra de carga + texto tipo terminal
+     2) Cursor personalizado: punto + anillo que sigue con leve delay
+     ==================================================================== */
+
+  /* ---- 1. LOADER DE ENTRADA ---- */
+  #cyberLoader{
+    position:fixed; inset:0; z-index:9999;
+    background:var(--negro);
+    display:flex; align-items:center; justify-content:center;
+    transition:opacity .6s ease, visibility .6s ease;
+  }
+  #cyberLoader.oculto{opacity:0; visibility:hidden; pointer-events:none;}
+  .loader-box{
+    text-align:center;
+    width:min(86vw, 360px);
+  }
+  .loader-glifo{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:2.6rem;
+    color:var(--hueso);
+    margin-bottom:1.4rem;
+    letter-spacing:.02em;
+  }
+  .loader-track{
+    width:100%;
+    height:2px;
+    background:rgba(245,240,238,.12);
+    position:relative;
+    overflow:hidden;
+    margin-bottom:.9rem;
+  }
+  .loader-fill{
+    position:absolute; left:0; top:0; bottom:0;
+    width:0%;
+    background:linear-gradient(90deg, var(--lila), var(--cyber-cian));
+    box-shadow:0 0 12px var(--cyber-cian);
+    transition:width .25s linear;
+  }
+  .loader-status{
+    font-family:'Jost', sans-serif;
+    font-size:.66rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--cyber-cian);
+    opacity:.85;
+    display:flex;
+    justify-content:space-between;
+  }
+  .loader-status span:last-child{color:var(--lila-suave);}
+
+  /* ---- 2. CURSOR PERSONALIZADO ---- */
+  .cyber-cursor, .cyber-cursor-ring{
+    position:fixed;
+    top:0; left:0;
+    pointer-events:none;
+    z-index:9998;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    will-change:transform;
+  }
+  .cyber-cursor{
+    width:6px; height:6px;
+    background:var(--cyber-cian);
+    box-shadow:0 0 8px var(--cyber-cian);
+  }
+  .cyber-cursor-ring{
+    width:30px; height:30px;
+    border:1px solid var(--lila);
+    transition:width .2s ease, height .2s ease, border-color .2s ease, opacity .2s ease;
+    opacity:.7;
+  }
+  /* estado "hover" sobre elementos interactivos: el anillo crece y cambia color */
+  .cyber-cursor-ring.activo{
+    width:54px; height:54px;
+    border-color:var(--cyber-cian);
+    opacity:1;
+  }
+  @media (max-width: 991px), (pointer:coarse){
+    .cyber-cursor, .cyber-cursor-ring{display:none;}
   }
 </style>
 </head>
 <body>
+
+<!-- ============ LOADER DE ENTRADA ============ -->
+<div id="cyberLoader" aria-hidden="true">
+  <div class="loader-box">
+    <div class="loader-glifo">Darklita</div>
+    <div class="loader-track">
+      <div class="loader-fill" id="loaderFill"></div>
+    </div>
+    <div class="loader-status">
+      <span id="loaderPct">CARGANDO 0%</span>
+      <span>NO ENCAJAR.SYS</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CURSOR CUSTOM ============ -->
+<div class="cyber-cursor" id="cyberDot"></div>
+<div class="cyber-cursor-ring" id="cyberRing"></div>
 
 <!-- ============ NAV ============ -->
 <nav class="navbar navbar-expand-lg navbar-darklita fixed-top py-3">
@@ -504,8 +678,6 @@
       </ul>
     </div>
   </div>
-  <!--Conny si ves esto, invitame a comer
-  -->
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -531,10 +703,6 @@
     <span class="linea-scroll"></span>
   </div>
 </header>
-
-<!-- <div class="sello-wrap">
-  <img src="assets/final/crest-only.png" alt="" class="sello" id="selloCrest">
-</div> -->
 
 <!-- ============ ESENCIA DE MARCA ============ -->
 <section class="seccion seccion-negra" id="esencia">
@@ -801,12 +969,100 @@
     easing:'ease-out-cubic'
   });
 
-  // Sello: se "estampa" cuando el hero entra en vista (carga inicial)
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      document.getElementById('selloCrest').classList.add('estampado');
-    }, 350);
-  });
+  /* ===================================================================
+     LOADER DE ENTRADA
+     Simula una carga tipo "terminal" con porcentaje. Se oculta solo
+     cuando el documento está listo Y ha pasado un mínimo de tiempo,
+     para que no sea un parpadeo si la página carga muy rápido.
+  =================================================================== */
+  (function(){
+    const loader   = document.getElementById('cyberLoader');
+    const fill     = document.getElementById('loaderFill');
+    const pctLabel = document.getElementById('loaderPct');
+
+    let pct = 0;
+    const duracionMinimaMs = 1400;
+    const inicio = Date.now();
+
+    const intervalo = setInterval(() => {
+      // avance no lineal: rápido al inicio, se frena cerca del final
+      const restante = 100 - pct;
+      pct += Math.max(restante * 0.12, 0.6);
+      if (pct >= 99) pct = 99;
+      fill.style.width = pct + '%';
+      pctLabel.textContent = 'CARGANDO ' + Math.floor(pct) + '%';
+    }, 70);
+
+    function finalizarCarga(){
+      clearInterval(intervalo);
+      fill.style.width = '100%';
+      pctLabel.textContent = 'CARGANDO 100%';
+      const transcurrido = Date.now() - inicio;
+      const espera = Math.max(duracionMinimaMs - transcurrido, 0);
+      setTimeout(() => {
+        loader.classList.add('oculto');
+        // Sello del hero se estampa justo cuando el loader desaparece
+        const sello = document.getElementById('selloCrest');
+        if (sello) sello.classList.add('estampado');
+      }, espera + 250);
+    }
+
+    if (document.readyState === 'complete') {
+      finalizarCarga();
+    } else {
+      window.addEventListener('load', finalizarCarga);
+    }
+  })();
+
+  /* ===================================================================
+     CURSOR PERSONALIZADO
+     - Punto pequeño: sigue el mouse 1:1 (sin retraso)
+     - Anillo: sigue con un suave "lerp" (interpolación), da sensación
+       de inercia/peso, típico de cursores custom en sitios de moda.
+     - Al pasar sobre elementos interactivos (a, button, .cat-pill, etc.)
+       el anillo crece y cambia de color — sutil, sin sonido ni vibración.
+  =================================================================== */
+  (function(){
+    const dot  = document.getElementById('cyberDot');
+    const ring = document.getElementById('cyberRing');
+    if (!dot || !ring) return;
+
+    // Si el dispositivo es táctil, no inicializamos nada (ya ocultos por CSS)
+    const esTactil = window.matchMedia('(pointer: coarse)').matches;
+    if (esTactil) return;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%,-50%)`;
+    });
+
+    function animarAnillo(){
+      // interpolación simple para suavizar el movimiento del anillo
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%,-50%)`;
+      requestAnimationFrame(animarAnillo);
+    }
+    animarAnillo();
+
+    const elementosInteractivos = 'a, button, .cat-pill, .nav-link, input, [role="button"]';
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(elementosInteractivos)) {
+        ring.classList.add('activo');
+      }
+    });
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest(elementosInteractivos)) {
+        ring.classList.remove('activo');
+      }
+    });
+  })();
 
   // Navbar: fondo más sólido al hacer scroll
   const nav = document.querySelector('.navbar-darklita');
