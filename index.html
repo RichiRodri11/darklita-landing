@@ -42,11 +42,11 @@
     font-family:'Cormorant Garamond', serif;
     font-size:1.15rem;
     overflow-x:hidden;
-    cursor:none; /* el cursor custom reemplaza al del sistema en desktop */
+    /* cursor:none; el cursor custom reemplaza al del sistema en desktop */
   }
-  @media (max-width: 991px), (pointer:coarse){
+  /* @media (max-width: 991px), (pointer:coarse){
     body{cursor:auto;} /* en touch/mobile, cursor normal del sistema */
-  }
+  } */
 
   .gotica{
     font-family:'UnifrakturMaguntia', cursive;
@@ -551,8 +551,8 @@
 
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
-    body{cursor:auto !important;}
-    .cyber-cursor, .cyber-cursor-ring{display:none !important;}
+    /* body{cursor:auto !important;} */
+    /* .cyber-cursor, .cyber-cursor-ring{display:none !important;} */
     #cyberLoader .loader-scan, #cyberLoader .loader-noise, #cyberLoader .loader-grid{display:none !important;}
   }
 
@@ -875,8 +875,8 @@
 </div>
 
 <!-- ============ CURSOR CUSTOM ============ -->
-<div class="cyber-cursor" id="cyberDot"></div>
-<div class="cyber-cursor-ring" id="cyberRing"></div>
+<!-- <div class="cyber-cursor" id="cyberDot"></div> -->
+<!-- <div class="cyber-cursor-ring" id="cyberRing"></div> -->
 
 <!-- ============ NAV ============ -->
 <nav class="navbar navbar-expand-lg navbar-darklita fixed-top py-3">
