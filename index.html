@@ -9,7 +9,7 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <!-- FRAMEWORK DE DISEÑO -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
 <!-- ANIMACION -->
@@ -553,61 +553,12 @@
     *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
     body{cursor:auto !important;}
     .cyber-cursor, .cyber-cursor-ring{display:none !important;}
+    #cyberLoader .loader-scan, #cyberLoader .loader-noise, #cyberLoader .loader-grid{display:none !important;}
   }
 
   /* ====================================================================
-     NUEVO BLOQUE — Y2K / CYBER OSCURO (sutil)
-     1) Loader de entrada con barra de carga + texto tipo terminal
-     2) Cursor personalizado: punto + anillo que sigue con leve delay
+     CURSOR PERSONALIZADO
      ==================================================================== */
-
-  /* ---- 1. LOADER DE ENTRADA ---- */
-  #cyberLoader{
-    position:fixed; inset:0; z-index:9999;
-    background:var(--negro);
-    display:flex; align-items:center; justify-content:center;
-    transition:opacity .6s ease, visibility .6s ease;
-  }
-  #cyberLoader.oculto{opacity:0; visibility:hidden; pointer-events:none;}
-  .loader-box{
-    text-align:center;
-    width:min(86vw, 360px);
-  }
-  .loader-glifo{
-    font-family:'UnifrakturMaguntia', cursive;
-    font-size:2.6rem;
-    color:var(--hueso);
-    margin-bottom:1.4rem;
-    letter-spacing:.02em;
-  }
-  .loader-track{
-    width:100%;
-    height:2px;
-    background:rgba(245,240,238,.12);
-    position:relative;
-    overflow:hidden;
-    margin-bottom:.9rem;
-  }
-  .loader-fill{
-    position:absolute; left:0; top:0; bottom:0;
-    width:0%;
-    background:linear-gradient(90deg, var(--lila), var(--cyber-cian));
-    box-shadow:0 0 12px var(--cyber-cian);
-    transition:width .25s linear;
-  }
-  .loader-status{
-    font-family:'Jost', sans-serif;
-    font-size:.66rem;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:var(--cyber-cian);
-    opacity:.85;
-    display:flex;
-    justify-content:space-between;
-  }
-  .loader-status span:last-child{color:var(--lila-suave);}
-
-  /* ---- 2. CURSOR PERSONALIZADO ---- */
   .cyber-cursor, .cyber-cursor-ring{
     position:fixed;
     top:0; left:0;
@@ -628,7 +579,6 @@
     transition:width .2s ease, height .2s ease, border-color .2s ease, opacity .2s ease;
     opacity:.7;
   }
-  /* estado "hover" sobre elementos interactivos: el anillo crece y cambia color */
   .cyber-cursor-ring.activo{
     width:54px; height:54px;
     border-color:var(--cyber-cian);
@@ -637,20 +587,289 @@
   @media (max-width: 991px), (pointer:coarse){
     .cyber-cursor, .cyber-cursor-ring{display:none;}
   }
+
+  /* ====================================================================
+     LOADER DE ENTRADA — Y2K Dark / Cyber Y2K oscuro / Soft Goth /
+     Nu Goth / Mall Goth moderno / Alt Girl / Alternative Fashion
+     ==================================================================== */
+  #cyberLoader{
+    position:fixed; inset:0; z-index:9999;
+    background:var(--negro);
+    display:flex; align-items:center; justify-content:center;
+    transition:opacity .7s ease, visibility .7s ease;
+    isolation:isolate;
+  }
+  #cyberLoader.oculto{opacity:0; visibility:hidden; pointer-events:none;}
+
+  /* fondo: grid de perspectiva tipo "digital horizon" */
+  .loader-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--cyber-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--cyber-line) 1px, transparent 1px);
+    background-size:42px 42px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 55%, rgba(0,0,0,.9) 0%, transparent 75%);
+            mask-image:radial-gradient(ellipse 70% 60% at 50% 55%, rgba(0,0,0,.9) 0%, transparent 75%);
+    opacity:.55;
+    animation:gridDrift 9s linear infinite;
+  }
+  @keyframes gridDrift{
+    from{background-position:0 0, 0 0;}
+    to{background-position:42px 84px, 42px 84px;}
+  }
+
+  /* halo radial vino/lila detrás del glifo, atmósfera gótica */
+  .loader-halo{
+    position:absolute;
+    width:620px; height:620px;
+    max-width:90vw; max-height:90vw;
+    background:radial-gradient(circle, rgba(92,22,34,.55) 0%, rgba(92,22,34,0) 68%);
+    filter:blur(4px);
+    animation:haloPulse 3.4s ease-in-out infinite;
+  }
+  @keyframes haloPulse{
+    0%,100%{opacity:.55; transform:scale(1);}
+    50%{opacity:.85; transform:scale(1.08);}
+  }
+
+  /* líneas de escaneo finas que cruzan toda la pantalla */
+  .loader-scan{
+    position:absolute; inset:0;
+    background:repeating-linear-gradient(
+      0deg,
+      rgba(245,240,238,.025) 0px,
+      rgba(245,240,238,.025) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode:overlay;
+    opacity:.5;
+  }
+  .loader-scan::after{
+    content:"";
+    position:absolute; left:0; right:0;
+    height:120px;
+    top:-120px;
+    background:linear-gradient(180deg, transparent, rgba(159,243,230,.10), transparent);
+    animation:scanSweep 2.6s ease-in-out infinite;
+  }
+  @keyframes scanSweep{
+    0%{top:-120px;}
+    100%{top:100%;}
+  }
+
+  /* "ruido" sutil tipo VHS/static, muy bajo, solo textura */
+  .loader-noise{
+    position:absolute; inset:0;
+    opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:noiseShift .4s steps(2) infinite;
+  }
+  @keyframes noiseShift{
+    0%{transform:translate(0,0);}
+    50%{transform:translate(-1%,1%);}
+    100%{transform:translate(1%,-1%);}
+  }
+
+  .loader-box{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    width:min(88vw, 420px);
+    padding:0 1rem;
+  }
+
+  /* marco de esquinas tipo HUD, sensación "interfaz cargando" */
+  .loader-frame{
+    position:relative;
+    padding:2.6rem 1.8rem 2.1rem;
+    border:1px solid var(--cyber-line);
+    background:linear-gradient(180deg, rgba(207,168,196,.04), rgba(159,243,230,.02));
+  }
+  .loader-frame::before, .loader-frame::after,
+  .loader-frame .esq-tr, .loader-frame .esq-bl{
+    content:"";
+    position:absolute;
+    width:16px; height:16px;
+    border-color:var(--cyber-cian);
+  }
+  .loader-frame::before{ /* top-left */
+    top:-1px; left:-1px;
+    border-top:2px solid var(--cyber-cian);
+    border-left:2px solid var(--cyber-cian);
+  }
+  .loader-frame::after{ /* bottom-right */
+    bottom:-1px; right:-1px;
+    border-bottom:2px solid var(--lila);
+    border-right:2px solid var(--lila);
+  }
+  .loader-frame .esq-tr{ /* top-right */
+    top:-1px; right:-1px;
+    border-top:2px solid var(--lila);
+    border-right:2px solid var(--lila);
+  }
+  .loader-frame .esq-bl{ /* bottom-left */
+    bottom:-1px; left:-1px;
+    border-bottom:2px solid var(--cyber-cian);
+    border-left:2px solid var(--cyber-cian);
+  }
+
+  .loader-tag{
+    font-family:'Space Mono', monospace;
+    font-size:.62rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--cyber-cian);
+    opacity:.8;
+    margin-bottom:1.1rem;
+  }
+  .loader-tag::before{content:"// ";color:var(--lila);}
+
+  .loader-glifo{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:2.9rem;
+    color:var(--hueso);
+    margin-bottom:.3rem;
+    letter-spacing:.02em;
+    position:relative;
+    text-shadow:0 0 22px rgba(159,243,230,.18);
+  }
+  /* glitch sutil en loop, look "señal inestable" sin exagerar */
+  .loader-glifo .capa{
+    position:absolute; inset:0;
+    color:inherit;
+  }
+  .loader-glifo .capa-cian{
+    color:var(--cyber-cian);
+    opacity:.55;
+    animation:glifoGlitchCian 2.8s steps(1,end) infinite;
+  }
+  .loader-glifo .capa-mag{
+    color:var(--cyber-mag);
+    opacity:.5;
+    animation:glifoGlitchMag 3.2s steps(1,end) infinite;
+  }
+  @keyframes glifoGlitchCian{
+    0%,92%,100%{transform:translate(0,0); opacity:0;}
+    93%{transform:translate(-2px,0); opacity:.55;}
+    95%{transform:translate(2px,1px); opacity:.4;}
+    97%{transform:translate(-1px,0); opacity:0;}
+  }
+  @keyframes glifoGlitchMag{
+    0%,90%,100%{transform:translate(0,0); opacity:0;}
+    91%{transform:translate(2px,0); opacity:.5;}
+    94%{transform:translate(-2px,-1px); opacity:.35;}
+    96%{transform:translate(1px,0); opacity:0;}
+  }
+
+  .loader-sub{
+    font-family:'Jost', sans-serif;
+    font-size:.68rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--lila-suave);
+    opacity:.75;
+    margin-bottom:1.8rem;
+  }
+
+  .loader-track{
+    width:100%;
+    height:3px;
+    background:rgba(245,240,238,.10);
+    position:relative;
+    overflow:hidden;
+    margin-bottom:1rem;
+    border-radius:1px;
+  }
+  .loader-fill{
+    position:absolute; left:0; top:0; bottom:0;
+    width:0%;
+    background:linear-gradient(90deg, var(--vino-claro), var(--lila), var(--cyber-cian));
+    box-shadow:0 0 14px var(--cyber-cian), 0 0 4px var(--lila);
+    transition:width .25s linear;
+  }
+  .loader-fill::after{
+    content:"";
+    position:absolute; top:0; right:0; bottom:0;
+    width:18px;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.85));
+    filter:blur(1.5px);
+  }
+
+  .loader-status{
+    font-family:'Space Mono', monospace;
+    font-size:.64rem;
+    letter-spacing:.08em;
+    color:var(--cyber-cian);
+    opacity:.85;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:1.4rem;
+  }
+  .loader-status span:last-child{color:var(--lila-suave); text-align:right;}
+
+  /* línea de "log" tipo terminal, cambia de texto mientras carga */
+  .loader-log{
+    font-family:'Space Mono', monospace;
+    font-size:.62rem;
+    letter-spacing:.04em;
+    color:rgba(245,240,238,.55);
+    min-height:1.2em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.4rem;
+  }
+  .loader-log .cursor-parpadeo{
+    display:inline-block;
+    width:6px; height:11px;
+    background:var(--cyber-cian);
+    animation:parpadeo .9s steps(1) infinite;
+  }
+  @keyframes parpadeo{
+    0%,50%{opacity:1;}
+    50.01%,100%{opacity:0;}
+  }
+
+  @media (max-width:480px){
+    .loader-glifo{font-size:2.4rem;}
+    .loader-frame{padding:2.1rem 1.2rem 1.7rem;}
+  }
 </style>
 </head>
 <body>
 
 <!-- ============ LOADER DE ENTRADA ============ -->
 <div id="cyberLoader" aria-hidden="true">
+  <div class="loader-grid"></div>
+  <div class="loader-halo"></div>
+  <div class="loader-scan"></div>
+  <div class="loader-noise"></div>
+
   <div class="loader-box">
-    <div class="loader-glifo">Darklita</div>
-    <div class="loader-track">
-      <div class="loader-fill" id="loaderFill"></div>
-    </div>
-    <div class="loader-status">
-      <span id="loaderPct">CARGANDO 0%</span>
-      <span>HECHOS PARA NO ENCAJAR</span>
+    <div class="loader-frame">
+      <span class="esq-tr"></span><span class="esq-bl"></span>
+
+      <div class="loader-tag">Sistema Darklita</div>
+
+      <div class="loader-glifo">
+        Darklita
+        <span class="capa capa-cian">Darklita</span>
+        <span class="capa capa-mag">Darklita</span>
+      </div>
+      <div class="loader-sub">By Remain</div>
+
+      <div class="loader-track">
+        <div class="loader-fill" id="loaderFill"></div>
+      </div>
+      <div class="loader-status">
+        <span id="loaderPct">CARGANDO 00%</span>
+        <span>HECHOS PARA NO ENCAJAR</span>
+      </div>
+
+      <div class="loader-log">
+        <span id="loaderLog">iniciando interfaz</span><span class="cursor-parpadeo"></span>
+      </div>
     </div>
   </div>
 </div>
@@ -661,22 +880,32 @@
 
 <!-- ============ NAV ============ -->
 <nav class="navbar navbar-expand-lg navbar-darklita fixed-top py-3">
-  <div class="container">
-    <a class="navbar-brand navbar-brand-text" href="#inicio">Darklita</a>
+  <div class="container d-flex align-items-center">
+
+    <!-- LOGO — izquierda -->
+    <a class="navbar-brand navbar-brand-text me-auto me-lg-0" href="#inicio">Darklita</a>
+
     <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="filter:invert(1);">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <ul class="navbar-nav align-items-lg-center gap-lg-2 mb-3 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="#esencia">Esencia</a></li>
-        <li class="nav-item"><a class="nav-link" href="#identidad">Identidad</a></li>
-        <li class="nav-item"><a class="nav-link" href="#moodboard">Moodboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="#publico">Para quién</a></li>
-        <li class="nav-item mt-2 mt-lg-0 ms-lg-2">
-          <a class="btn-ig-nav" href="https://www.instagram.com/darklita.official" target="_blank" rel="noopener">Instagram</a>
-        </li>
-      </ul>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <div class="d-flex flex-column flex-lg-row align-items-center w-100 mt-3 mt-lg-0">
+
+        <!-- LINKS — centro -->
+        <ul class="navbar-nav flex-row flex-wrap justify-content-center gap-lg-2 mx-lg-auto mb-3 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#esencia">Esencia</a></li>
+          <li class="nav-item"><a class="nav-link" href="#identidad">Identidad</a></li>
+          <li class="nav-item"><a class="nav-link" href="#moodboard">Moodboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#publico">Para quién</a></li>
+        </ul>
+
+        <!-- INSTAGRAM — derecha -->
+        <a class="btn-ig-nav" href="https://www.instagram.com/darklita.official" target="_blank" rel="noopener">Instagram</a>
+
+      </div>
     </div>
+
   </div>
 </nav>
 
@@ -971,17 +1200,32 @@
 
   /* ===================================================================
      LOADER DE ENTRADA
-     Simula una carga tipo "terminal" con porcentaje. Se oculta solo
-     cuando el documento está listo Y ha pasado un mínimo de tiempo,
-     para que no sea un parpadeo si la página carga muy rápido.
+     Terminal tipo HUD cyber con log rotativo y barra de progreso.
+     Se oculta solo cuando el documento está listo Y ha pasado un
+     mínimo de tiempo, para que no sea un parpadeo si carga muy rápido.
   =================================================================== */
   (function(){
     const loader   = document.getElementById('cyberLoader');
     const fill     = document.getElementById('loaderFill');
     const pctLabel = document.getElementById('loaderPct');
+    const logLabel = document.getElementById('loaderLog');
+
+    const mensajesLog = [
+      'iniciando interfaz',
+      'cargando estética dark',
+      'sincronizando moodboard',
+      'preparando colección',
+      'ajustando atmósfera',
+      'listo para no encajar'
+    ];
+    let logIndex = 0;
+    const intervaloLog = setInterval(() => {
+      logIndex = (logIndex + 1) % mensajesLog.length;
+      logLabel.textContent = mensajesLog[logIndex];
+    }, 480);
 
     let pct = 0;
-    const duracionMinimaMs = 1400;
+    const duracionMinimaMs = 1700;
     const inicio = Date.now();
 
     const intervalo = setInterval(() => {
@@ -990,13 +1234,15 @@
       pct += Math.max(restante * 0.12, 0.6);
       if (pct >= 99) pct = 99;
       fill.style.width = pct + '%';
-      pctLabel.textContent = 'CARGANDO ' + Math.floor(pct) + '%';
+      pctLabel.textContent = 'CARGANDO ' + String(Math.floor(pct)).padStart(2,'0') + '%';
     }, 70);
 
     function finalizarCarga(){
       clearInterval(intervalo);
+      clearInterval(intervaloLog);
       fill.style.width = '100%';
       pctLabel.textContent = 'CARGANDO 100%';
+      logLabel.textContent = mensajesLog[mensajesLog.length - 1];
       const transcurrido = Date.now() - inicio;
       const espera = Math.max(duracionMinimaMs - transcurrido, 0);
       setTimeout(() => {
